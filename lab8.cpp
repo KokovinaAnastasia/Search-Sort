@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <stack>
 #include <chrono>
+#include "MyStack.h"
 
 using namespace std;
 
@@ -60,14 +61,14 @@ void QuickSortWithRecursion(int *numbers, int left, int right)
 
 void QuickSortWithoutRecursion(int* numbers, int left, int right)
 {
-	stack<int> lefts;
-	stack<int> rights;
- 	lefts.push(left);
-	rights.push(right);
-	while (!lefts.empty() && !rights.empty())
+	MyStack lefts;
+	MyStack rights;
+ 	lefts.Push(left);
+	rights.Push(right);
+	while (!lefts.isEmpty() && !rights.isEmpty())
 	{
-		left = lefts.top();
-		right = rights.top();
+		left = lefts.top->data;
+		right = rights.top->data;
 		int indx = left;
 		int pivot = numbers[right];
 		for (int i = left; i < right; i++)
@@ -80,17 +81,17 @@ void QuickSortWithoutRecursion(int* numbers, int left, int right)
 			}
 		numbers[right] = numbers[indx];
 		numbers[indx] = pivot;
-		lefts.pop();
-		rights.pop();
+		lefts.Pop();
+		rights.Pop();
 		if (indx > left)
 		{
-			lefts.push(left);
-			rights.push(indx - 1);
+			lefts.Push(left);
+			rights.Push(indx - 1);
 		}
 		if (indx < right)
 		{
-			lefts.push(indx + 1);
-			rights.push(right);
+			lefts.Push(indx + 1);
+			rights.Push(right);
 		}
 	}
 }
