@@ -179,7 +179,7 @@ int main()
 	cout << endl;
 
 	auto start3 = chrono::steady_clock::now();
-	cout << "Index of " << valueForSearch << "  without recursion is ";
+	cout << "Index of " << valueForSearch << " without recursion is ";
 	int index3 = BSearchWithoutRecursion(numbers2, 0, binSearchArraySize - 1, valueForSearch);
 	auto stop3 = chrono::steady_clock::now();
 	auto time3 = chrono::duration_cast<chrono::microseconds>(stop3 - start3);
